@@ -1,0 +1,20 @@
+大写字母（A-Z）的ASCII码值从65开始。也就是说，'A'的ASCII码是65，'B'是66，依此类推，直到'Z'的ASCII码是90。  
+小写字母（a-z）的ASCII码值从97开始。即，'a'的ASCII码是97，'b'是98，依此类推，直到'z'的ASCII码是122。   
+因此，当您使用String.fromCharCode()函数转换ASCII码值为字符时，如果您想得到大写字母，应该从65开始计算；如果您想得到小写字母，则应该从97开始计算。   
+
+例如：   
+
+String.fromCharCode(65)会返回大写字母'A'。   
+String.fromCharCode(97)会返回小写字母'a'。  
+
+
+1. String.prototype.charCodeAt()     
+与String.fromCharCode()相反，charCodeAt()方法返回指定位置的字符的Unicode编码。这个方法可以用来获取字符串中某个字符的编码，然后可能基于这个编码进行某些操作。
+```code
+const charCode = 'A'.charCodeAt(0); 
+```
+
+2. String.prototype.charAt()
+```code
+const char = 'Hello'.charAt(1); // 返回'e'
+```
