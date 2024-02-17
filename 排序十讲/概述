@@ -5,3 +5,13 @@ counting sort, bucket sort, radix sort *pancake sort
 75. Sort Colors
 451. Sort Characters By Frequency
 164. Maximum Gap
+
+那些考？那些不考？
+常考的：
+merge sort,
+quick sort (quick select)
+bucket sort counting sort heap sort
+少考的：
+pancake sort
+不考的：
+bubble sort, selection sort, insertion sort, shell sort radix sort
