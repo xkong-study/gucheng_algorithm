@@ -1,0 +1,38 @@
+套娃题，有点脑筋急转弯，见一次套路即可    
+
+If a subarray has K distinct elements, then total subarrays will be n*(n+ 1)/2, which will include subarrays with k-1, k-2, k-3...1 distinct elements.     
+example: [1,2,3] k=    
+res: [11 121 [31 [1,21 12,31 11,2,31    
+res=(1+3)*3/2=6    
+res = 1 + 2 + 3 = 6    
+高斯算法小于k都算等差数列求和公式   
+
+
+```code
+function atMostKDistinct(A, K) {
+    let start = 0, count = 0;
+    let map = new Map();
+
+    for (let i = 0; i < A.length; i++) {
+        if (!map.has(A[i])) {
+            K--;
+        }
+        map.set(A[i], (map.get(A[i]) || 0) + 1);
+        while (K < 0) {
+            map.set(A[start], map.get(A[start]) - 1);
+            if (map.get(A[start]) === 0) {
+                map.delete(A[start]);
+                K++;
+            }
+            start++;
+        }
+        count += i - start + 1;
+    }
+
+    return count;
+}
+
+function subarraysWithKDistinct(A, K) {
+    return atMostKDistinct(A, K) - atMostKDistinct(A, K - 1);
+}
+```
