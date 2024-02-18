@@ -10,7 +10,9 @@ counting sort, bucket sort, radix sort *pancake sort
 常考的：
 merge sort,
 quick sort (quick select)
-bucket sort counting sort heap sort
+bucket sort    
+counting sort     
+heap sort    
 少考的：
 pancake sort
 不考的：
