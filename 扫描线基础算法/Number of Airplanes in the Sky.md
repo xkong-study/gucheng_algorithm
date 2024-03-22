@@ -22,3 +22,21 @@
 第三架飞机在5时刻起飞, 8时刻降落.   
 第四架飞机在4时刻起飞, 7时刻降落.   
 在5时刻到6时刻之间, 天空中有三架飞机.  
+
+```code
+var minMeetingRooms = function(intervals) {
+let map = new Map();
+let sum = 0;
+let max = 1;
+for(let i of intervals){
+    map.has(i[0])?map.set(i[0],map.get(i[0])+1):map.set(i[0],1);
+    map.has(i[1])?map.set(i[1],map.get(i[1])-1):map.set(i[1],-1);
+}
+let indexArr = Array.from(map.keys()).sort((a, b) => a - b);
+for(let i=0;i<indexArr.length;i++){
+    max = Math.max(max,sum);
+    sum+=map.get(indexArr[i]);
+}
+return max;
+};
+```
