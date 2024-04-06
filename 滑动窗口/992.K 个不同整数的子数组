@@ -1,4 +1,4 @@
-套娃题，有点脑筋急转弯，见一次套路即可    
+这种方法避免了直接枚举所有可能的子数组，从而在效率上有显著的提升。     
 
 If a subarray has K distinct elements, then total subarrays will be n*(n+ 1)/2, which will include subarrays with k-1, k-2, k-3...1 distinct elements.     
 example: [1,2,3] k=    
