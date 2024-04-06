@@ -7,32 +7,31 @@ res=(1+3)*3/2=6
 res = 1 + 2 + 3 = 6    
 高斯算法小于k都算等差数列求和公式   
 
+这种方法是通过计算边界情况（即“最多包含”）来逼近我们想要的目标（即“恰好包含”），这是一种在计算复杂问题时常用的技巧。它避免了直接枚举和检查每个可能的子数组，从而提高了效率。       
 
 ```code
-function atMostKDistinct(A, K) {
-    let start = 0, count = 0;
-    let map = new Map();
+var subarraysWithKDistinct = function(nums, k) {
+    return atMostKDistinct(nums, k) - atMostKDistinct(nums, k - 1);
+};
 
-    for (let i = 0; i < A.length; i++) {
-        if (!map.has(A[i])) {
-            K--;
-        }
-        map.set(A[i], (map.get(A[i]) || 0) + 1);
-        while (K < 0) {
-            map.set(A[start], map.get(A[start]) - 1);
-            if (map.get(A[start]) === 0) {
-                map.delete(A[start]);
-                K++;
+function atMostKDistinct(nums, k) {
+    let start = 0, count = 0;
+    let freq = new Map();
+
+    for (let end = 0; end < nums.length; end++) {
+        freq.set(nums[end], (freq.get(nums[end]) || 0) + 1);
+
+        while (freq.size > k) {
+            freq.set(nums[start], freq.get(nums[start]) - 1);
+            if (freq.get(nums[start]) === 0) {
+                freq.delete(nums[start]);
             }
             start++;
         }
-        count += i - start + 1;
+        count += end - start + 1;
     }
 
     return count;
 }
 
-function subarraysWithKDistinct(A, K) {
-    return atMostKDistinct(A, K) - atMostKDistinct(A, K - 1);
-}
 ```
