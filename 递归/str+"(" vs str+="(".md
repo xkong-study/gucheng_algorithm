@@ -31,3 +31,4 @@ function example2(str) {
     console.log(str);  // 仍然输出 "hi", str 未被修改
 }
 ```
+每次dfs都是只决策一次用if，决策很多次用for。     
