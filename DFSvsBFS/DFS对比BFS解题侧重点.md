@@ -21,3 +21,6 @@ level: col/row
 约束条件多：写用来约束的函数      
 
 BFS的答案是通过level获取的，DFS的答案是通过for循环判断是否可以选择作为子节点获取的           
+
+![3631714155478_ pic_hd](https://github.com/xkong-study/gucheng_algorithm/assets/100473178/2a7f555e-9c56-45cb-add2-0009b3ecbf29)
+
