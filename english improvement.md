@@ -116,6 +116,7 @@ function buildPrefixSum(arr) {
 function queryRangeSum(prefix, L, R) {
     return L === 0 ? prefix[R] : prefix[R] - prefix[L - 1];
 }
+```
 
 ### **Step 4: Edge Cases & Complexity**
 #### **🔹 Edge Cases**
@@ -164,7 +165,7 @@ function hasCycle(head) {
     return false;
 }
 
-
+```
 ### **Step 3: Optimized Approach (Floyd’s Cycle Detection)**
 - **Idea**: Use two pointers (**slow & fast**).  
   - The slow pointer moves **one step at a time**.
@@ -183,7 +184,7 @@ function hasCycle(head) {
     }
     return false;
 }
-
+```
 ### **Step 4: Edge Cases & Complexity**
 #### **🔹 Edge Cases**
 1. **Empty list (`head === null`)**  
