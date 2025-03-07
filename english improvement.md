@@ -95,6 +95,7 @@ function rangeSum(arr, L, R) {
     }
     return sum;
 }
+```
 
 
 ### **Step 3: Optimized Approach (Prefix Sum)**
