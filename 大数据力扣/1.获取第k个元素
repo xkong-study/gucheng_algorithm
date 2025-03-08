@@ -1,0 +1,204 @@
+
+
+
+```
+var findKthLargest = function(nums, k) {
+    for(let i = Math.floor(nums.length/2)-1; i>=0 ; i--){
+        heapify(i,nums.length);
+    }
+    let heapSize = nums.length;
+    let kthLargest;
+    for (let i = 0; i < k; i++) {
+        [nums[0], nums[heapSize - 1]] = [nums[heapSize - 1], nums[0]];
+        kthLargest = nums[heapSize - 1]; 
+        heapSize--;
+        heapify(0, heapSize);
+    }
+
+    function heapify(i,m){
+        let largest = i;
+        let left = i*2+1;
+        let right = i*2+2;
+        if(left < m && nums[left] > nums[largest]){
+            largest = left;
+        }
+        if(right < m && nums[right] > nums[largest]){
+            largest = right;
+        }
+        if(largest!=i){
+            [nums[i],nums[largest]] = [nums[largest],nums[i]];
+            heapify(largest,m);
+        }
+    }
+    return nums[nums.length-k];
+};
+```
+
+
+📌 何时用哪种？   
+
+O(k log N) → 适用于 k 很小，找第 k 大的数（最大堆 + 取 k 次堆顶）。
+O(N log K) → 适用于 K 远小于 N，需要动态维护 K 个最大元素（最小堆）。  
+
+❌ O(N log K)（最小堆维护 Top-K）    
+
+如果是 维护 K 个最大元素，我们用 K 大小的最小堆（Min Heap）：   
+
+初始化 K 大小的最小堆 O(K)   
+遍历 N 个元素，每个元素入堆 O(log K)   
+最终堆中保存 K 个最大值   
+总复杂度 O(N log K)   
+
+🚀 面试技巧   
+
+"如果 k 是固定值，使用最大堆 O(k log N)；如果 K 是动态窗口，使用最小堆 O(N log K)。" 🎯  
+
+
+followUp:
+
+📌 面试回答模板（获取 1 亿点击数据中的热门点击）
+💡 如果面试官问：
+"你如何在 1 亿条点击数据中找出前 K 个最热门的点击？"
+
+✅ Step 1：理解问题
+我们有 N = 10^8（1 亿条点击数据），但只需要找出前 K 个热门点击。
+K 远小于 N（比如 K = 1000）。
+数据是流式到达的（不能一次性存入内存，需要动态维护 Top-K）。
+完整排序 O(N log N) 太慢，所以要找到更高效的方案。
+✅ Step 2：初步方案
+❌ 方法 1：完整排序（O(N log N)）
+
+思路：先排序，再取前 K 个元素。
+问题：N 过大，排序的时间复杂度 O(N log N)，而且存储所有数据的内存开销大，不适用于大规模数据。
+❌ 方法 2：快速选择（O(N)）
+
+思路：用 QuickSelect 算法，直接找到第 K 大的元素，取前 K 个数据。
+问题：快速选择是一次性计算，但这里的数据是流式的，无法动态维护 Top-K。
+✅ 方法 3：最小堆（O(N log K)）✅
+
+思路：用大小为 K 的最小堆（Min Heap）维护前 K 个最大点击数。
+核心逻辑：
+遍历 N 个点击数据，每个数据 O(log K) 进入最小堆。
+当堆的大小超过 K 时，移除堆顶（当前最小的热门点击）。
+遍历完 N 个数据后，堆中剩下的 K 个元素就是最终的 Top-K。
+时间复杂度：
+构建堆：O(K)
+遍历 N 个数据，入堆 O(log K) → O(N log K)
+总复杂度：O(N log K) ✅，远优于 O(N log N) 排序。
+✅ Step 3：代码实现
+js
+复制
+编辑
+class MinHeap {
+    constructor() {
+        this.heap = [];
+    }
+
+    add(val) {
+        this.heap.push(val);
+        this.bubbleUp();
+    }
+
+    poll() {
+        if (this.heap.length === 1) return this.heap.pop();
+        const min = this.heap[0];
+        this.heap[0] = this.heap.pop();
+        this.bubbleDown();
+        return min;
+    }
+
+    peek() {
+        return this.heap[0]; // 堆顶（当前最小的热门点击数）
+    }
+
+    size() {
+        return this.heap.length;
+    }
+
+    bubbleUp() {
+        let index = this.heap.length - 1;
+        while (index > 0) {
+            let parentIndex = Math.floor((index - 1) / 2);
+            if (this.heap[index] >= this.heap[parentIndex]) break;
+            [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];
+            index = parentIndex;
+        }
+    }
+
+    bubbleDown() {
+        let index = 0;
+        let length = this.heap.length;
+        while (true) {
+            let left = 2 * index + 1;
+            let right = 2 * index + 2;
+            let smallest = index;
+
+            if (left < length && this.heap[left] < this.heap[smallest]) {
+                smallest = left;
+            }
+            if (right < length && this.heap[right] < this.heap[smallest]) {
+                smallest = right;
+            }
+            if (smallest === index) break;
+
+            [this.heap[index], this.heap[smallest]] = [this.heap[smallest], this.heap[index]];
+            index = smallest;
+        }
+    }
+}
+
+function findTopKClicks(clickStream, K) {
+    let minHeap = new MinHeap();
+
+    for (let click of clickStream) {
+        if (minHeap.size() < K) {
+            minHeap.add(click);
+        } else if (click > minHeap.peek()) {
+            minHeap.poll();
+            minHeap.add(click);
+        }
+    }
+
+    return minHeap.heap; // 返回前 K 个点击数
+}
+示例运行：
+
+js
+复制
+编辑
+const clickStream = [100, 500, 200, 700, 300, 900, 1000, 400, 800, 600, 1200, 1100, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000];
+const K = 5;
+
+console.log(findTopKClicks(clickStream, K)); 
+// 输出示例：[1500, 1600, 1700, 1800, 1900, 2000]
+✅ Step 4：优化 & 可扩展性
+1️⃣ 流式数据处理
+
+如果点击数据是不断流入的（如实时日志），我们可以不断更新最小堆。
+这样可以实时维护 Top-K 热门点击，不需要重新计算。
+2️⃣ 并行计算
+
+如果数据量巨大（N = 10^9 以上），可以使用 MapReduce 或 分布式计算：
+Step 1：将数据分成多个批次，多个机器分别计算 Top-K
+Step 2：合并每个机器的 Top-K，最终计算全局 Top-K
+3️⃣ 磁盘优化
+
+如果 N 远超内存（TB 级数据），可以用外部排序（External Sorting）。
+先用 堆排序 将数据分批排序，再合并多个 Top-K 文件，减少内存使用。
+✅ Step 5：总结面试回答
+🔥 面试官：如何在 1 亿点击数据中找 Top-K 热门点击？
+✅ 答：
+
+N = 10^8，数据量大，不能完整排序 O(N log N)，需要高效方法
+使用 O(N log K) 的最小堆（Min Heap）
+维护 K 大小的最小堆，每次入堆 O(log K)
+当堆满时，移除最小值，确保堆中是 Top-K
+最终堆中的 K 个元素就是 Top-K
+支持流式数据，可以动态更新热门点击
+可扩展到分布式计算（MapReduce）或外部排序
+📌 面试回答技巧
+简洁开头：“1 亿数据量太大，不能排序，我们用 O(N log K) 的最小堆”
+强调动态更新：“数据是流式的，我们可以实时维护 Top-K”
+提及可扩展性：“大规模数据可以用分布式计算或外部排序”
+适当补充代码思路（面试官感兴趣时）
+
