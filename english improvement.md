@@ -283,7 +283,7 @@ function bfs(graph, startNode) {
     }
 }
 
-
+```
 ### **Step 3: Optimized Approach (DFS - Recursive & Iterative)**
 - **Idea**: Use **recursion** (implicit stack) or an **explicit stack (iterative DFS)**.
 - **Time Complexity**: `O(V + E)` (vertices + edges)
@@ -301,7 +301,7 @@ function dfsRecursive(graph, node, visited = new Set()) {
         dfsRecursive(graph, neighbor, visited);
     }
 }
-
+```
 ✔ **Advantages:**
 - **Simple & elegant**: The recursive approach requires minimal code and is easy to understand.
 - **No need for an explicit stack**: The function call stack serves as the stack, making the implementation cleaner.
