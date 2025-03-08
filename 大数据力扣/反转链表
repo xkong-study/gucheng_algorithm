@@ -26,7 +26,6 @@ function reverseList(head) {
 使用迭代法可以优化到 O(1) 的空间复杂度（双指针反转法）。
 
 📌 代码
-javascript
 
 function reverseList(head) {
     let prev = null, curr = head;
@@ -38,6 +37,7 @@ function reverseList(head) {
     }
     return prev;
 }
+
 📌 时间 & 空间复杂度
 时间复杂度：O(n)
 空间复杂度：O(1)
@@ -47,12 +47,14 @@ function reverseList(head) {
 📌 关键点
 如果链表 数据量过大（比如有 10 亿个节点），单机处理可能会 超出内存。可以考虑 以下优化方案：
 
-✅ 方法 1：外部存储 + 分块反转
+✅ 方法 1：外部存储 + 分块反转    
 
-思路：
+思路：    
+
 把链表数据存入磁盘，分成多个小块（每块 M 个节点）。
 从磁盘逐块加载，在内存中 反转每个小块，然后写回磁盘。
 最终合并各个小块，重新连接链表。
+
 适用场景：
 
 超大链表，无法一次性加载进内存。
@@ -69,13 +71,14 @@ function reverseList(head) {
 数据存储在分布式系统（如 Google BigTable、AWS S3）。
 
 🟢 4. 反转链表 K 组分组反转（LeetCode 25）
+
 📌 关键点
 如果只需要反转整个链表，那是基本版。
 如果要求每 K 个节点反转，则需要额外逻辑：
 先统计当前链表长度，确保每 K 组都能被反转。
 遍历链表，每次找到 K 个节点进行局部反转。
 将反转后的部分拼接到最终链表。
-📌 代码
+
 javascript
 
 function reverseKGroup(head, k) {
@@ -118,13 +121,18 @@ function reverse(start, end) {
         curr = next;
     }
 }
+
 📌 时间 & 空间复杂度
+
 时间复杂度：O(n)（每个节点只遍历一次）。
 空间复杂度：O(1)（仅使用指针）。
+
 **🟢 5. 反转 双向链表（Doubly Linked List）
+
 📌 关键点
 单链表反转时，只需要修改 next 指针。
 双向链表需要同时修改 next 和 prev 指针。
+
 📌 代码
 javascript
 
@@ -141,9 +149,11 @@ function reverseDoublyLinkedList(head) {
 
     return prev; // 返回新的头节点
 }
+
 📌 时间 & 空间复杂度
 时间复杂度：O(n)
 空间复杂度：O(1)
+
 🔹 总结
 Follow-up 题目	优化方法	时间复杂度	空间复杂度
 递归反转链表	递归 + 回溯	O(n)	O(n)（递归栈开销）
@@ -151,6 +161,7 @@ O(1) 空间复杂度反转	迭代法（双指针）	O(n)	O(1)
 超大数据链表	外部存储 / MapReduce	O(n)	O(1) - O(n)
 K 组反转（LeetCode 25）	先分组 + 局部反转	O(n)	O(1)
 反转双向链表	修改 prev + next	O(n)	O(1)
+
 ✅ 如果链表超大，无法放入内存，可以用 外部存储 + 分块反转 或 MapReduce 并行计算。
 ✅ 如果链表是动态数据流，可以用 在线算法维护部分反转结果。
 
