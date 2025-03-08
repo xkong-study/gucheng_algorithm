@@ -241,3 +241,88 @@ function hasCycle(head) {
 👉 *"Use two pointers (slow & fast). If they meet, there's a cycle. Runs in `O(N)` time and `O(1)` space."*  
 
 🔥 **With this structure, you can confidently explain these concepts in an interview!** 🎯
+
+
+# 🚀 Depth-First Search (DFS) - Interview Answer Template
+
+## 📌 Problem Statement
+> *"How would you traverse a tree or a graph using Depth-First Search (DFS)?"*
+
+## **Step 1: Understanding the Problem**
+- **What is DFS?**
+  - DFS is an algorithm used to explore nodes in a **tree** or **graph** by moving **deep** into a branch before backtracking.
+  - It can be implemented using **recursion (stack-based)** or an **explicit stack (iterative approach)**.
+  
+- **Where is DFS used?**
+  - Graph traversal (finding paths, checking connectivity)
+  - Tree traversal (Preorder, Inorder, Postorder)
+  - Backtracking problems (solving mazes, generating permutations)
+  - Detecting cycles in graphs
+  - Connected components in an undirected graph
+
+---
+
+## **Step 2: Naïve Approach (Breadth-First Search Alternative)**
+- **Why not BFS?**
+  - BFS explores nodes level by level using a queue, while DFS goes deep into one branch first.
+  - DFS is preferable when **recursion** or **backtracking** is required.
+
+```js
+function bfs(graph, startNode) {
+    let queue = [startNode];
+    let visited = new Set();
+
+    while (queue.length > 0) {
+        let node = queue.shift();  // Dequeue (FIFO)
+        if (visited.has(node)) continue;
+        visited.add(node);
+        console.log(node);  // Process the node
+        for (let neighbor of graph[node]) {
+            queue.push(neighbor);
+        }
+    }
+}
+
+
+### **Step 3: Optimized Approach (DFS - Recursive & Iterative)**
+- **Idea**: Use **recursion** (implicit stack) or an **explicit stack (iterative DFS)**.
+- **Time Complexity**: `O(V + E)` (vertices + edges)
+- **Space Complexity**: `O(V)` in the worst case (for recursion stack or explicit stack)
+
+---
+
+### **🔹 Recursive DFS Implementation**
+```js
+function dfsRecursive(graph, node, visited = new Set()) {
+    if (visited.has(node)) return;
+    visited.add(node);
+    console.log(node);  // Process the node
+    for (let neighbor of graph[node]) {
+        dfsRecursive(graph, neighbor, visited);
+    }
+}
+
+✔ **Advantages:**
+- **Simple & elegant**: The recursive approach requires minimal code and is easy to understand.
+- **No need for an explicit stack**: The function call stack serves as the stack, making the implementation cleaner.
+- **Ideal for tree traversal**: Works well for problems like **preorder, inorder, and postorder** traversal of trees.
+
+⛔ **Drawbacks:**
+- **Stack overflow risk**: If the recursion depth is too large (e.g., in a deep graph with `V` nodes), it may exceed the system's recursion limit, leading to a crash.
+- **Extra space usage**: In the worst case (e.g., a linear chain-like graph), the recursion stack depth can be `O(V)`, leading to inefficient memory usage.
+- **Harder to debug**: Recursive calls can be trickier to trace and debug compared to an iterative approach.
+
+---
+
+✔ **Advantages of Iterative DFS:**
+- **Avoids stack overflow**: Since recursion is not used, it prevents excessive stack depth issues.
+- **More control over execution**: The explicit stack allows better handling of order-specific logic, such as tracking parent-child relationships.
+- **Better suited for deep graphs**: Works efficiently even for graphs with millions of nodes.
+
+⛔ **Drawbacks of Iterative DFS:**
+- **Explicit stack required**: Unlike recursion, you must manually manage a stack, which can be slightly more complex.
+- **More boilerplate code**: The iterative approach typically requires more lines of code than the recursive version.
+- **Less intuitive for tree traversal**: Recursive DFS is more natural for tree-related problems, whereas iterative DFS is preferred for graphs.
+
+---
+
