@@ -193,3 +193,174 @@ console.log(factorial(5)); // Outputs 120
 - **Nested loops → O(n2)O(n^2)O(n2)** (Sorting, DP)
 - **Exponential growth → O(2n)O(2^n)O(2n)** (Recursion, subset problems)
 - **Factorial problems → O(n!)O(n!)O(n!)** (Backtracking, permutations)
+- 
+
+
+
+​​ **📌 Key Technical Terms for Coding Interviews**
+
+This is a **comprehensive glossary** of common terms used**time complexity, algorithms, and data structures**.
+
+## **1️⃣ Time Complexity Analysis**
+
+| **Term** | **Definition** | **Common Examples** |
+| --- | --- | --- |
+| **Big-O Notation** | Describe | O(  |
+| --- | --- | --- |
+| **Constant Time O(1)O(1)O(1)** | The algorithm runs in a fixed number | Array access, Hash |
+| --- | --- | --- |
+| **Logarithmic Time O(log⁡N)O(\\log N)O(logN)** | The problem size halves each step | Binary search, Balanced BST loo |
+| --- | --- | --- |
+| **Linear Time O(N)O(N)O(N)** | The algorithm runs in proportion | Looping through an array |
+| --- | --- | --- |
+| **Linearithmic Time O(Nlog⁡N)O(N \\log N)O(NlogN)** | Combination of linear and logarithmic | Merge sort, Quick sort (avg case) |
+| --- | --- | --- |
+| **Quadratic Time O(N2)O(N^2)O(N2)** | Algorithms with nested loops | Bubb |
+| --- | --- | --- |
+| **Exponential Time O(2N)O(2^N)O(2N)** | Growth doubles with | Subset generation, backtracking |
+| --- | --- | --- |
+| **Factorial Time O(N!)O(N!)O(N!)** | Generates all poss | Generating permutations (TSP, backtracking) |
+| --- | --- | --- |
+
+## **2️⃣ Common Algorithmic Concepts**
+
+| **Concept** | **Definition** | **Common Uses** |
+| --- | --- | --- |
+| **Recursion** | A function calls | DFS, Divide and Conquer, Backtracking |
+| --- | --- | --- |
+| **Divide and Conquer** | Breaks problem into smaller sub | Merge Sort, Quick Sort, Binary Search |
+| --- | --- | --- |
+| **Dynamic Programming (DP)** | Solves problems by storing past results to avoid recomputation | Fibonacci, Knapsack Problem |
+| --- | --- | --- |
+| **Greedy Algorithm** | Makes the best choice at each step without backtracking | Huffman Coding, Kruskal’s Algorithm |
+| --- | --- | --- |
+| **Backtracking** | Tries all possibilities but prunes invalid paths | N-Queens, Sudoku Solver |
+| --- | --- | --- |
+| **Bit Manipulation** | Uses binary operations to optimize performance | XOR swap, Bitwise AND/OR |
+| --- | --- | --- |
+
+## **3️⃣ Data Structures**
+
+| **Data Structure** | **Definition** | **Time Complexity** |
+| --- | --- | --- |
+| **Array** | Fixed-size collection of elements | **Access: O(1), Insert/Delete: O(N)** |
+| --- | --- | --- |
+| **Linked List** | Sequential list where each node points to the next | **Access: O(N), Insert/Delete: O(1)** |
+| --- | --- | --- |
+| **Stack** | LIFO (Last In, First Out) | **Push/Pop: O(1), Access: O(N)** |
+| --- | --- | --- |
+| **Queue** | FIFO (First In, First Out) | **Enqueue/Dequeue: O(1), Access: O(N)** |
+| --- | --- | --- |
+| **Heap (Priority Queue)** | Binary tree where parent nodes have a specific order | **Insert/Delete: O(log N), Find Min/Max: O(1)** |
+| --- | --- | --- |
+| **Hash Table** | Stores key-value pairs with fast lookups | **Insert/Delete/Access: O(1) avg, O(N) worst** |
+| --- | --- | --- |
+| **Binary Search Tree (BST)** | A tree where left < root < right | **Search/Insert/Delete: O(log N) avg, O(N) worst** |
+| --- | --- | --- |
+| **Trie (Prefix Tree)** | Efficient for prefix-based search | **Insert/Search: O(L) (L = word length)** |
+| --- | --- | --- |
+| **Graph** | Nodes connected by edges | **Adjacency List: O(V+E), Adjacency Matrix: O(V²)** |
+| --- | --- | --- |
+
+## **4️⃣ Common Algorithms**
+
+| **Algorithm** | **Category** | **Time Complexity** |
+| --- | --- | --- |
+| **Binary Search** | Search | **O(log N)** |
+| --- | --- | --- |
+| **Merge Sort** | Sorting | **O(N log N)** |
+| --- | --- | --- |
+| **Quick Sort** | Sorting | **O(N log N) avg, O(N²) worst** |
+| --- | --- | --- |
+| **Dijkstra’s Algorithm** | Shortest Path (Graph) | **O(V + E log V)** |
+| --- | --- | --- |
+| **Floyd-Warshall Algorithm** | All-Pairs Shortest Paths | **O(V³)** |
+| --- | --- | --- |
+| **Bellman-Ford Algorithm** | Shortest Path with Negative Weights | **O(VE)** |
+| --- | --- | --- |
+| **Kruskal’s Algorithm** | Minimum Spanning Tree (MST) | **O(E log V)** |
+| --- | --- | --- |
+| **Prim’s Algorithm** | Minimum Spanning Tree (MST) | **O(E + V log V)** |
+| --- | --- | --- |
+| **Floyd’s Cycle Detection** | Detects cycles in linked lists | **O(N)** |
+| --- | --- | --- |
+| **Topological Sort** | Orders a DAG (Directed Acyclic Graph) | **O(V + E)** |
+| --- | --- | --- |
+
+## **5️⃣ Space Complexity**
+
+| **Space Complexity** | **Description** | **Example** |
+| --- | --- | --- |
+| **O(1)** | Uses constant space | Swapping two variables |
+| --- | --- | --- |
+| **O(N)** | Space grows linearly with input size | Storing elements in an array |
+| --- | --- | --- |
+| **O(N²)** | Stores all pairs of elements | Adjacency matrix for graphs |
+| --- | --- | --- |
+| **O(2^N)** | Stores all subsets | Recursion tree for subset generation |
+| --- | --- | --- |
+| **O(N!)** | Stores all permutations | Backtracking algorithms |
+| --- | --- | --- |
+
+## **6️⃣ Problem-Solving Strategies**
+
+| **Strategy** | **Description** | **Example Problems** |
+| --- | --- | --- |
+| **Sliding Window** | Moves a fixed-size window across an array | Longest Substring Without Repeating Characters |
+| --- | --- | --- |
+| **Two Pointers** | Uses two indices moving towards each other | Two Sum (Sorted), Container with Most Water |
+| --- | --- | --- |
+| **Prefix Sum** | Stores cumulative sums to optimize range queries | Subarray Sum Equals K |
+| --- | --- | --- |
+| **Binary Lifting** | Optimizes jump operations in trees | LCA (Lowest Common Ancestor) |
+| --- | --- | --- |
+| **Union-Find (Disjoint Set)** | Tracks connected components | Kruskal’s Algorithm, Cycle Detection |
+| --- | --- | --- |
+
+## **7️⃣ Interview Scenarios**
+
+| **Scenario** | **Common Time Complexity** | **Typical Data Structures** |
+| --- | --- | --- |
+| **Sorting large data** | **O(N log N)** | Merge Sort, Quick Sort |
+| --- | --- | --- |
+| **Searching in sorted data** | **O(log N)** | Binary Search, BST |
+| --- | --- | --- |
+| **Finding shortest path** | **O(V + E log V)** | Dijkstra’s Algorithm, Graphs |
+| --- | --- | --- |
+| **Processing streams of data** | **O(1) - O(log N)** | Heap, Hash Map |
+| --- | --- | --- |
+| **Checking if a number exists** | **O(1) - O(log N)** | Hash Map, Binary Search |
+| --- | --- | --- |
+| **Finding top K elements** | **O(K log N)** | Min/Max Heap |
+| --- | --- | --- |
+
+## **8️⃣ Complexity-Based Decision Making**
+
+| **Given Constraints NNN** | **Preferred Algorithm** | **Time Complexity** |
+| --- | --- | --- |
+| N≤109N \\leq 10^9N≤109 | **O(log N)** | Binary Search, Balanced BST |
+| --- | --- | --- |
+| N≤106N \\leq 10^6N≤106 | **O(N)** | Linear search, DFS, BFS |
+| --- | --- | --- |
+| N≤105N \\leq 10^5N≤105 | **O(N log N)** | Sorting, Heap operations |
+| --- | --- | --- |
+| N≤3000N \\leq 3000N≤3000 | **O(N²)** | Brute-force pairwise comparisons |
+| --- | --- | --- |
+| N≤20N \\leq 20N≤20 | **O(2^N)** | Subset generation, Backtracking |
+| --- | --- | --- |
+| N≤12N \\leq 12N≤12 | **O(N!)** | Full permutation, NP-hard problems |
+| --- | --- | --- |
+
+### **🎯 Key Takeaways**
+
+1. **Big-O notation helps estimate worst-case performance**.
+2. **Common algorithms follow specific complexity patterns**:
+    - **O(log N) → Binary Search, BST**
+    - **O(N log N) → Sorting, Divide & Conquer**
+    - **O(N²) → Brute force nested loops**
+    - **O(2ⁿ) → Backtracking, Recursion**
+    - **O(N!) → Permutations, NP-hard problems**
+3. **Data structures matter**: Choose wisely for **efficient lookup, insertion, and traversal**.
+4. **Different problem sizes require different algorithm choices**.
+
+🚀 **Mastering these terms will significantly improve your performance in coding interviews!** 🚀
