@@ -44,7 +44,7 @@ This is a **quick reference guide** covering the essential math concepts you nee
 
 js
 
-复制编辑
+
 
 for (let i = 0; i < n; i++) {
 
@@ -73,7 +73,7 @@ Total executions:
 
 yaml
 
-复制编辑
+
 
 Level 0: 1
 
@@ -104,7 +104,7 @@ Total nodes:
 
 js
 
-复制编辑
+
 
 15 % 12 = 3 // 15-hour clock time converts to 3 PM
 
@@ -112,7 +112,7 @@ js
 
 js
 
-复制编辑
+
 
 function isPrime(n) {
 
@@ -145,7 +145,7 @@ return true;
 
 js
 
-复制编辑
+
 
 function factorial(n) {
 
