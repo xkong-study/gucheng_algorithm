@@ -19,7 +19,7 @@ When answering follow-up questions in an interview, **keep your responses struct
 
 javascript
 
-CopyEdit
+
 
 function reverseList(head) {
 
@@ -56,7 +56,7 @@ return newHead; // Return new head
 
 javascript
 
-CopyEdit
+
 
 function reverseList(head) {
 
@@ -118,7 +118,7 @@ return prev; // New head
 
 javascript
 
-CopyEdit
+
 
 function reverseKGroup(head, k) {
 
@@ -202,7 +202,7 @@ curr = next;
 
 javascript
 
-CopyEdit
+
 
 function reverseDoublyLinkedList(head) {
 
