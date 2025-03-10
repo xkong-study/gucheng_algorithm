@@ -53,3 +53,99 @@
 - "Kruskal’s algorithm sorts edges and uses union-find to construct the MST efficiently."
 - "Prim’s algorithm uses a priority queue (min-heap) to expand the MST from an arbitrary starting node."
 - "MSTs are useful in network design, such as laying out electrical grids or optimizing road networks."
+
+## **Graph Traversal (BFS & DFS)**
+
+### **Approach**
+
+- Use **BFS** for shortest path problems in unweighted graphs (e.g., Number of Islands, Knight's Minimum Moves).
+- Use **DFS** for connected component searches, pathfinding, or cycle detection (e.g., Flood Fill).
+- Use a **visited set or array** to prevent revisiting nodes and avoid infinite loops.
+- For **directed graphs**, check for **cycles** (e.g., Course Schedule).
+
+### **Interview Phrases**
+
+- "I will use BFS because this is an unweighted shortest path problem."
+- "Since we need to explore all connected components, DFS is a good choice."
+- "To avoid revisiting nodes, I will use a visited set."
+- "For cycle detection in a directed graph, I will use the in-degree method (Kahn's Algorithm) or DFS with backtracking."
+- "I will use an adjacency list representation for efficiency."
+
+## **Shortest Path Problems**
+
+### **Approach**
+
+- Use **BFS** for the shortest path in an **unweighted graph**.
+- Use **Dijkstra’s Algorithm** for the shortest path in a **weighted graph with non-negative edges**.
+- Use **Bellman-Ford** if **negative weights** are involved.
+- Use **Floyd-Warshall** for **all-pairs shortest paths**.
+
+### **Interview Phrases**
+
+- "Since this is an unweighted graph, BFS is the most efficient choice for finding the shortest path."
+- "Dijkstra's algorithm is optimal here because all edge weights are non-negative."
+- "If negative weights are present, I will use the Bellman-Ford algorithm."
+- "Floyd-Warshall allows us to compute the shortest paths between all pairs of nodes efficiently."
+
+## **Matrix as a Graph (2D Grid Problems)**
+
+### **Approach**
+
+- Treat the **grid as a graph**, where each cell is a node and adjacent cells are edges.
+- Use **BFS** for shortest path and multi-source problems (Walls and Gates, Zombie in Matrix).
+- Use **DFS** for flood-fill-type problems (Number of Islands, Flood Fill).
+- Use a **queue** for BFS and **recursive calls** or **an explicit stack** for DFS.
+- Consider **four or eight possible directions** for movement.
+
+### **Interview Phrases**
+
+- "I will treat the matrix as a graph where each cell is a node connected to its neighbors."
+- "I will use BFS since we need to find the shortest path from multiple sources."
+- "DFS is useful here because we need to explore entire regions before backtracking."
+- "To ensure all cells are visited, I will mark them as visited once processed."
+
+## **Implicit Graph Problems**
+
+### **Approach**
+
+- Convert the problem into a graph where **states are nodes** and **valid transitions are edges**.
+- Use **BFS** for the shortest transformation sequence (Word Ladder, Open the Lock).
+- Use **backtracking or DFS** for exhaustive searches (Sliding Puzzle).
+- If the graph is too large, use **bidirectional BFS** to optimize.
+
+### **Interview Phrases**
+
+- "This problem can be represented as an implicit graph where each valid state is a node."
+- "I will use BFS to find the shortest sequence of transformations."
+- "Since the state space is large, bidirectional BFS can optimize the search."
+- "Each node represents a unique configuration, and edges represent valid moves."
+
+## **Topological Sorting (DAG Processing)**
+
+### **Approach**
+
+- Use **Kahn's Algorithm (BFS)** or **DFS-based topological sorting** for DAG problems.
+- If there is a cycle, **topological sorting is not possible**.
+- Use **in-degree** to determine the processing order (Course Schedule, Alien Dictionary).
+
+### **Interview Phrases**
+
+- "Since the graph is a DAG, I will use topological sorting to determine the processing order."
+- "I will use Kahn’s Algorithm (BFS-based topological sort) to process nodes with zero in-degree first."
+- "If a cycle is detected, the problem constraints are invalid."
+- "A topological sort helps us order tasks based on dependencies."
+
+## **Minimum Spanning Tree (MST)**
+
+### **Approach**
+
+- Use **Kruskal’s Algorithm** (greedy, sorts edges, uses union-find).
+- Use **Prim’s Algorithm** (greedy, starts from a node and expands the MST).
+- MST is useful in **network design, road planning, and clustering**.
+
+### **Interview Phrases**
+
+- "Since we need to find the minimum spanning tree, I will use Kruskal’s Algorithm with union-find."
+- "Prim’s Algorithm is also a good choice since it expands from a given starting node."
+- "Kruskal’s Algorithm sorts the edges and processes them greedily to construct the MST."
+- "The MST ensures that all nodes are connected with the minimum possible edge weight."
