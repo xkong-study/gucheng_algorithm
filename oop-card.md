@@ -1,53 +1,71 @@
-# Refactored JavaScript Code for Card Game
+# Design & Implementation of Card Game with Joker Support
 
-This document contains the refactored JavaScript code for implementing a card game using Object-Oriented Programming (OOP).
+This document describes the design principles and implementation approach for a card game that includes a Joker class, extending the base Card class. The Joker is always considered the highest-ranked card with a value of 14.
 
-// Card class representing a playing card  
-class Card {  
+## 📌 Design Steps
+
+1. **Define a Base \`Card\` Class** - Represents a standard playing card with a suit and a value.
+
+2. **Introduce a \`Joker\` Class** - Inherits from \`Card\` but has a fixed value of 14, making it the strongest card.
+
+3. **Modify the \`Game\` Class** - Supports adding both standard cards and Joker cards while handling comparisons.
+
+4. **Implement \`cardBeats()\` Method** - Compares two cards based on predefined ranks, treating Joker separately.
+
+5. **Ensure Scalability** - The design allows easy extension for more special cards in the future.
+
+## 📌 Key Implementation
+
+\### **1. Base \`Card\` Class**
+
+```{  
 constructor(suit, value) {  
-this.suit = suit; // e.g., "Hearts", "Spades"  
-this.value = value; // e.g., "A", "2", "K"  
+this.suit = suit;  
+this.value = value;  
 }  
-<br/>// Returns a string representation of the card  
-toString() {  
+<br/>toString() {  
 return \`${this.value} of ${this.suit}\`;  
 }  
+}
+
+\### **2. \`Joker\` Class (Extending \`Card\`)**
+
+class Joker extends Card {  
+constructor() {  
+super("Joker", "Joker");  
 }  
-<br/>// Game class managing the deck and comparisons  
+<br/>getValueIndex() {  
+return 14; // Joker always has the highest value  
+}  
+<br/>toString() {  
+return "Joker";  
+}  
+}
+
+\### **3. \`Game\` Class with Joker Support**
+
 class Game {  
 constructor() {  
-this.suits = \["Hearts", "Spades", "Clubs", "Diamonds"\];  
 this.values = \["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"\];  
-this.cards = \[\]; // Stores Card objects  
+this.cards = \[\];  
 }  
-<br/>// Adds a card to the game  
-addCard(suit, value) {  
+<br/>addCard(suit, value) {  
+if (suit === "Joker") {  
+this.cards.push(new Joker());  
+} else {  
 this.cards.push(new Card(suit, value));  
 }  
-<br/>// Returns the string representation of a card by index  
-cardString(index) {  
-return index >= 0 && index < this.cards.length ? this.cards\[index\].toString() : "";  
 }  
-<br/>// Determines if cardA beats cardB  
-cardBeats(cardA, cardB) {  
+<br/>cardBeats(cardA, cardB) {  
 if (cardA >= this.cards.length || cardB >= this.cards.length) return false;  
 <br/>let card1 = this.cards\[cardA\];  
 let card2 = this.cards\[cardB\];  
-<br/>let index1 = this.values.indexOf(card1.value);  
-let index2 = this.values.indexOf(card2.value);  
-<br/>return index1 > index2; // Higher index means stronger card  
+<br/>let index1 = card1 instanceof Joker ? 14 : this.values.indexOf(card1.value);  
+let index2 = card2 instanceof Joker ? 14 : this.values.indexOf(card2.value);  
+<br/>return index1 > index2;  
 }  
-}  
-<br/>// Generator function for input handling  
-function\* main() {  
-const game = new Game();  
-<br/>let \[suit, value\] = (yield).split(" ");  
-game.addCard(suit, value);  
-console.log(game.cardString(0));  
-<br/>\[suit, value\] = (yield).split(" ");  
-game.addCard(suit, value);  
-console.log(game.cardString(1));  
-<br/>console.log(game.cardBeats(0, 1));  
-}  
-<br/>// Exception class for handling input termination  
-class EOFError extends Error {}
+}
+
+## 📌 Conclusion
+
+This design follows an object-oriented approach, ensuring modularity and scalability. The use of inheritance allows us to add new special cards easily while keeping the game logic clean and maintainable.
