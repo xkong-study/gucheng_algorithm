@@ -112,13 +112,13 @@ return sub.length;
 
 ## 🔹 7. Summary
 
-1\. \*\*Brute Force DFS (O(2ⁿ))\*\* → Tries all subsequences, impractical.
+1\. **Brute Force DFS (O(2ⁿ))** → Tries all subsequences, impractical.
 
-2\. \*\*DFS + Memoization (O(n²))\*\* → Optimizes DFS with caching.
+2\. **DFS + Memoization (O(n²))** → Optimizes DFS with caching.
 
-3\. \*\*Classic DP (O(n²))\*\* → Uses \`dp\[i\]\`, easy to understand.
+3\. **Classic DP (O(n²))** → Uses \`dp\[i\]\`, easy to understand.
 
-4\. \*\*Greedy + Binary Search (O(n log n))\*\* → Fastest, but harder to implement.
+4\. **Greedy + Binary Search (O(n log n))** → Fastest, but harder to implement.
 
 ## 🚀 Final Thought
 
@@ -126,8 +126,8 @@ The optimal solution (O(n log n)) combines greedy and binary search, maintaining
 
 ## 📌 What If the Interviewer Asks
 
-1\. \*\*Can you reconstruct the actual LIS?\*\* → Need to track indices while building \`sub\` (extra storage needed).
+1\. **Can you reconstruct the actual LIS?** → Need to track indices while building \`sub\` (extra storage needed).
 
-2\. \*\*Can we do better than O(n log n)?\*\* → No, this is the best known complexity for LIS.
+2\. **Can we do better than O(n log n)?** → No, this is the best known complexity for LIS.
 
-3\. \*\*What if all numbers are the same?\*\* → LIS length is 1.
+3\. **What if all numbers are the same?** → LIS length is 1.
