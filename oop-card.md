@@ -30,6 +30,7 @@ toString() {
 
 **2. \`Joker\` Class (Extending \`Card\`)**
 
+```
 class Joker extends Card {  
   constructor() {  
    super("Joker", "Joker");  
@@ -41,9 +42,10 @@ class Joker extends Card {
    return "Joker";  
   }  
 }
+```
 
 **3. \`Game\` Class with Joker Support**
-
+```
 class Game {  
   constructor() {  
     this.values = \["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"\];  
@@ -65,7 +67,7 @@ class Game {
      return index1 > index2;  
    }  
 }
-
+```
 ## 📌 Conclusion
 
 This design follows an object-oriented approach, ensuring modularity and scalability. The use of inheritance allows us to add new special cards easily while keeping the game logic clean and maintainable.
