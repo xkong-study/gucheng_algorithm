@@ -10,50 +10,50 @@ Imagine a Deck of Playing Cards... Instead of modifying `Deck` every time a new 
 ```
 
 class Deck {  
-constructor() {  
-this.cards = [];  
-this.suits = ["Spades", "Hearts", "Clubs", "Diamonds"];  
-this.ranks = ["2", "3", ..., "King", "Ace"];  
-this.createDeck();  
+   constructor() {  
+      this.cards = [];  
+      this.suits = ["Spades", "Hearts", "Clubs", "Diamonds"];  
+      this.ranks = ["2", "3", ..., "King", "Ace"];  
+      this.createDeck();  
 }  
-<br/createDeck() {  
-for (let suit of this.suits) {  
-for (let rank of this.ranks) {  
-this.cards.push({ suit, rank });  
-}  
-}  
-}  
+createDeck() {  
+   for (let suit of       this.suits) {  
+     for (let rank of       this.ranks) {  
+        this.cards.push({ suit, rank });  
+     }  
+   }  
+ }  
 }  
 ```
 ### ✅ Good Design (Following OCP)
 ```
 
 class Suit {  
-constructor(name) {  
-this.name = name;  
+   constructor(name) {  
+      this.name = name;  
+  }  
 }  
+class StandardSuit extends Suit {  
+   constructor() {  
+   super("Standard");  
+ }  
 }  
-<br/class StandardSuit extends Suit {  
-constructor() {  
-super("Standard");  
+class Joker extends Suit {  
+   constructor() {  
+   super("Joker");  
+ }  
 }  
+class Deck {  
+   constructor() {  
+      this.cards = [];  
+      this.suits = [new StandardSuit(), new Joker()];  
+      this.createDeck();  
 }  
-<br/class Joker extends Suit {  
-constructor() {  
-super("Joker");  
-}  
-}  
-<br/class Deck {  
-constructor() {  
-this.cards = [];  
-this.suits = [new StandardSuit(), new Joker()];  
-this.createDeck();  
-}  
-<br/createDeck() {  
-for (let suit of this.suits) {  
+createDeck() {  
+   for (let suit of       this.suits) {  
 // Logic to add corresponding cards  
-}  
-}  
+  }  
+ }  
 }  
 ```
 ## 🏛️ Single Responsibility Principle (SRP) – Public Library Analogy
@@ -65,19 +65,19 @@ A library does many things: managing books, handling members, and borrowing book
 ### 🚫 Bad Design (Violating SRP)
 ```
 class Library {  
-constructor() {  
-this.books = [];  
-this.members = [];  
+   constructor() {  
+      this.books = [];  
+      this.members = [];  
 }  
-<br/addBook(book) {  
-this.books.push(book);  
+addBook(book) {  
+      this.books.push(book);  
 }  
-<br/registerMember(member) {  
-this.members.push(member);  
+registerMember(member) {  
+      this.members.push(member);  
 }  
-<br/checkoutBook(member, book) {  
-if (this.books.includes(book)) {  
-console.log(`${member} checked out ${book}`);  
+checkoutBook(member, book) {  
+if (      this.books.includes(book)) {  
+   console.log(`${member} checked out ${book}`);  
 }  
 }  
 } 
@@ -85,42 +85,42 @@ console.log(`${member} checked out ${book}`);
 ### ✅ Good Design (Following SRP)
 ```
 class BookManager {  
-constructor() {  
-this.books = [];  
+   constructor() {  
+      this.books = [];  
 }  
-<br/addBook(book) {  
-this.books.push(book);  
+addBook(book) {  
+      this.books.push(book);  
 }  
-<br/findBook(title) {  
-return this.books.find(book = book.title === title);  
-}  
-}  
-<br/class MemberManager {  
-constructor() {  
-this.members = [];  
-}  
-<br/registerMember(member) {  
-this.members.push(member);  
-}  
-<br/isMemberRegistered(name) {  
-return this.members.includes(name);  
+findBook(title) {  
+return       this.books.find(book = book.title === title);  
 }  
 }  
-<br/class BorrowingSystem {  
-constructor(bookManager, memberManager) {  
-this.bookManager = bookManager;  
-this.memberManager = memberManager;  
+class MemberManager {  
+   constructor() {  
+      this.members = [];  
 }  
-<br/checkoutBook(member, bookTitle) {  
-if (this.memberManager.isMemberRegistered(member)) {  
-let book = this.bookManager.findBook(bookTitle);  
+registerMember(member) {  
+      this.members.push(member);  
+}  
+isMemberRegistered(name) {  
+return       this.members.includes(name);  
+}  
+}  
+class BorrowingSystem {  
+   constructor(bookManager, memberManager) {  
+      this.bookManager = bookManager;  
+      this.memberManager = memberManager;  
+}  
+checkoutBook(member, bookTitle) {  
+if (      this.memberManager.isMemberRegistered(member)) {  
+let book =       this.bookManager.findBook(bookTitle);  
 if (book) {  
-console.log(`${member} checked out "${bookTitle}"`);  
+   console.log(`${member} checked out "${bookTitle}"`);  
 } else {  
-console.log("Book not found.");  
+   console.log("Book not found.");  
 }  
 } else {  
-console.log("Member not registered.");  
+   console.log("Member not registered.");  
 }  
 }  
 }  
