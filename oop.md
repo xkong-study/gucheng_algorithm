@@ -17,8 +17,8 @@ class Deck {
       this.createDeck();  
 }  
 createDeck() {  
-   for (let suit of       this.suits) {  
-     for (let rank of       this.ranks) {  
+   for (let suit of this.suits) {  
+     for (let rank of this.ranks) {  
         this.cards.push({ suit, rank });  
      }  
    }  
@@ -50,8 +50,8 @@ class Deck {
       this.createDeck();  
 }  
 createDeck() {  
-   for (let suit of       this.suits) {  
-// Logic to add corresponding cards  
+   for (let suit ofthis.suits) {  
+     // Logic to add corresponding cards  
   }  
  }  
 }  
@@ -68,18 +68,18 @@ class Library {
    constructor() {  
       this.books = [];  
       this.members = [];  
-}  
-addBook(book) {  
+   }  
+   addBook(book) {  
       this.books.push(book);  
-}  
-registerMember(member) {  
+   }  
+   registerMember(member) {  
       this.members.push(member);  
-}  
-checkoutBook(member, book) {  
-if (      this.books.includes(book)) {  
-   console.log(`${member} checked out ${book}`);  
-}  
-}  
+   }  
+   checkoutBook(member, book) {  
+       if (this.books.includes(book)) {  
+       console.log(`${member} checked out ${book}`);  
+    }  
+  }  
 } 
 ```
 ### ✅ Good Design (Following SRP)
@@ -92,8 +92,8 @@ addBook(book) {
       this.books.push(book);  
 }  
 findBook(title) {  
-return       this.books.find(book = book.title === title);  
-}  
+   return this.books.find(book = book.title === title);  
+  }  
 }  
 class MemberManager {  
    constructor() {  
@@ -103,8 +103,8 @@ registerMember(member) {
       this.members.push(member);  
 }  
 isMemberRegistered(name) {  
-return       this.members.includes(name);  
-}  
+  return this.members.includes(name);  
+ }  
 }  
 class BorrowingSystem {  
    constructor(bookManager, memberManager) {  
@@ -112,17 +112,17 @@ class BorrowingSystem {
       this.memberManager = memberManager;  
 }  
 checkoutBook(member, bookTitle) {  
-if (      this.memberManager.isMemberRegistered(member)) {  
-let book =       this.bookManager.findBook(bookTitle);  
+if (this.memberManager.isMemberRegistered(member)) {  
+    let book = this.bookManager.findBook(bookTitle);  
 if (book) {  
-   console.log(`${member} checked out "${bookTitle}"`);  
+     console.log(`${member} checked out "${bookTitle}"`);  
 } else {  
    console.log("Book not found.");  
-}  
+  }  
 } else {  
    console.log("Member not registered.");  
-}  
-}  
+  }  
+ }  
 }  
 ```
 ## 🔑 Interview Summary
