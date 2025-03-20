@@ -1,4 +1,4 @@
-# 📌 JavaScript 面向对象编程（OOP）总结 ✨✨✨
+#  JavaScript 面向对象编程（OOP）总结 ✨✨✨
 
 JavaScript 是一种 基于原型 (Prototype-based) 的面向对象编程语言，但 ES6 引入了 class 语法，使其更接近传统 OOP 语言（如 Java、Python）。
 
@@ -190,4 +190,37 @@ console.log(p.age); // ✅ 25
 | 异步处理     | `async def` + `await`                  | `async function` + `await`          |
 | 异常处理     | `try-except`                           | `try-catch`                         |
 
-🚀 JavaScript OOP 重点：封装、继承、多态、静态成员、动态属性 🚀✨✨✨
+🚀 JavaScript OOP 重点：封装、继承、多态、静态成员、动态属性
+
+今日手写错误
+
+```
+class UserFactory {
+    static createUser(type, name) {
+        switch (type) {
+            case "admin": return new Admin(name);
+            case "user": return new User(name);
+            case "guest": return new Guest(name);
+            default: throw new Error("Invalid type");
+        }
+    }
+}
+
+```
+不是
+```
+class factory{
+    constructor(type,name){
+        if(this.type == 'admin'){ return new Admin(this.name); }
+}
+```
+
+```
+乐观锁问题	this.version 需在 withdraw() 前检查 是 Files.version
+```
+```
+在类里直接 new 另一个类	 可以	this.node = new ListNode();      
+在构造函数里传入另一个类	 不推荐	constructor(ListNode, capacity) {...}       
+在方法里创建另一个类的实例	可以	this.car = new Car("Tesla");     
+```
+catch() 语法错误（缺少参数）
