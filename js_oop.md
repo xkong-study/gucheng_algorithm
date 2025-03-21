@@ -227,4 +227,5 @@ catch() 语法错误（缺少参数）
 
 this 丢失	普通函数不绑定上下文	改用箭头函数 const process = () => {}        
 Math.random() 不变	写成 static，只生成一次	每次交易生成 ID，用 Date.now(), Math.random() 或 UUID    
-this.account undefined	Account 类里没有 this.account	应传 this 本身，代表当前账户     
+this.account undefined	Account 类里没有 this.account	应传 this 本身，代表当前账户    
+我们不可以把this.#balance再构造器之外 如果之外就是#balance
