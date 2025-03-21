@@ -223,15 +223,63 @@ class factory{
 在构造函数里传入另一个类	 不推荐	constructor(ListNode, capacity) {...}       
 在方法里创建另一个类的实例	可以	this.car = new Car("Tesla");     
 ```
-catch() 语法错误（缺少参数）
+catch() 语法错误（缺少参数）    
+ 
+this 丢失	普通函数不绑定上下文	改用箭头函数 const process = () => {}                 
+Math.random() 不变	写成 static，只生成一次	每次交易生成 ID，用 Date.now(), Math.random() 或  UID               
+this.account undefined	Account 类里没有 this.account	应传 this 本身，代表当前账户              
+我们不可以把this.#balance再构造器之外 如果之外就是#balance             
+setTimeout不可以写在try catch里面 因为try catch 宏观事件 setTimeout是微事件 不可以在同时执行  try/catch 只捕获同步异常         
+constructor只能初始化不能实现可以override的事件 不可以执行需要耗时或者可能失败的操作。      
+不可以在构造器里面创建类 =》 不方便测试 不利于耦合 不方便扩展 通过依赖注入方式替代。       
+execute() → 再内部调用 withdraw() or deposit() 更好！      
+比起“直接调用 withdraw()”，这种做法在可读性、可维护性、扩展性、安全性上都更优秀。     
 
-this 丢失	普通函数不绑定上下文	改用箭头函数 const process = () => {}             
-Math.random() 不变	写成 static，只生成一次	每次交易生成 ID，用 Date.now(), Math.random() 或 UUID             
-this.account undefined	Account 类里没有 this.account	应传 this 本身，代表当前账户            
-我们不可以把this.#balance再构造器之外 如果之外就是#balance         
-setTimeout不可以写在try catch里面 因为try catch 宏观事件 setTimeout是微事件 不可以在同时执行      
-constructor只能初始化不能实现可以override的事件 不可以执行需要耗时或者可能失败的操作。    
-不可以在构造器里面创建类 =》 不方便测试 不利于耦合 不方便扩展 通过依赖注入方式替代。     
-execute() → 再内部调用 withdraw() or deposit() 更好！
-比起“直接调用 withdraw()”，这种做法在可读性、可维护性、扩展性、安全性上都更优秀。   
+测试时无法注入替代实现      
+比如你想测试 Logger 会不会正确调用 .write()，你就没法 mock 这个 ConsoleOutput        
 
+除非你去 monkey patch 全局类，这非常 dirty：         
+global.ConsoleOutput = TestOutput; // ❌ 超脏        
+而如果你用依赖注入，就可以轻松 mock：          
+const logger = new Logger(new TestOutput())        
+
+ 
+“变的是行为？用组合”   
+“变的是类型结构？才考虑继承”    
+“组合注入 + 策略模式 + 依赖分离 = 企业级设计标准”   
+
+class User {       
+  #email;         
+
+  constructor(email) {
+    this.setEmail(email); // 利用已有逻辑，避免重复写规则         
+  }
+
+  getEmail() {        
+    return this.#email;       
+  }           
+       
+  setEmail(val) {         
+    this.#email = val.toLowerCase(); // 一处封装，标准统一        
+  }      
+}         
+
+
+async run() {        
+  try {        
+    await this.task(); // 支持 Promise/async 异步任务         
+  } catch (e) {        
+    console.log("Caught:", e); // 错误被 catch 到，不会炸崩系统        
+  }       
+}      
+优势：        
+async/await 能让 try/catch 捕获 Promise 中的异常
+可读性强，结构清晰
+可以扩展后续 retry、status 控制等逻辑
+
+✅ 状态改我 → 方法挂我（如：post.publish()）  
+✅ 字段归我 → 方法挂我（如：session.isExpired()）      
+✅ 集合是我 → 方法挂我（如：cart.add()）      
+✅ 是我发起 → 方法挂我（如：user.like()）      
+✅ 是我调度 → 方法挂我（如：scheduler.schedule()）           
+     
