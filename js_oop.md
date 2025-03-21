@@ -225,7 +225,13 @@ class factory{
 ```
 catch() 语法错误（缺少参数）
 
-this 丢失	普通函数不绑定上下文	改用箭头函数 const process = () => {}        
-Math.random() 不变	写成 static，只生成一次	每次交易生成 ID，用 Date.now(), Math.random() 或 UUID    
-this.account undefined	Account 类里没有 this.account	应传 this 本身，代表当前账户    
-我们不可以把this.#balance再构造器之外 如果之外就是#balance
+this 丢失	普通函数不绑定上下文	改用箭头函数 const process = () => {}             
+Math.random() 不变	写成 static，只生成一次	每次交易生成 ID，用 Date.now(), Math.random() 或 UUID             
+this.account undefined	Account 类里没有 this.account	应传 this 本身，代表当前账户            
+我们不可以把this.#balance再构造器之外 如果之外就是#balance         
+setTimeout不可以写在try catch里面 因为try catch 宏观事件 setTimeout是微事件 不可以在同时执行      
+constructor只能初始化不能实现可以override的事件 不可以执行需要耗时或者可能失败的操作。    
+不可以在构造器里面创建类 =》 不方便测试 不利于耦合 不方便扩展 通过依赖注入方式替代。     
+execute() → 再内部调用 withdraw() or deposit() 更好！
+比起“直接调用 withdraw()”，这种做法在可读性、可维护性、扩展性、安全性上都更优秀。   
+
