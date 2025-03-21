@@ -13,3 +13,17 @@ admin
 throw  
 error  
 locate
+
+idempotent   
+cascading    
+synchronized    
+replica  
+inconsistency  
+execute   
+driven   
+parameterize    
+load   
+singleton   
+access   
+withdraw    
+leak   
