@@ -5,6 +5,11 @@
 ---
 <img width="359" alt="Screenshot 2025-04-14 at 19 44 57" src="https://github.com/user-attachments/assets/283987f2-372b-4d7e-9970-6ee664499740" />
 
+<img width="330" alt="Screenshot 2025-04-14 at 20 09 54" src="https://github.com/user-attachments/assets/08962cc8-19ba-4409-a27f-a0d365df9839" />
+
+1.检测在不在环上是 x = kn-m的证明
+2.证明 n-x=m
+
 ## §7.6 Floyd 判圈（判环证明）
 
 ### 🌀 基本模型
